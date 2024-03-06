@@ -10,37 +10,16 @@ function App() {
   const [text, setText] = useState('');//оставлена  на уровне компонента, а не перенесена в redux, потому что больше нигде не используется
   const dispatch = useDispatch();
 
-  const addTask = () => dispatch(addTodo(text));
-
-  //обрабочик события onChange на input checkbox
-  const toggleTodoComplete = (todoId) => {
-
-
-    // setTodos (
-    //   todos.map(
-    //     todo => {
-    //       if (todo.id !== todoId) return todo;
-
-    //       return {
-    //         ...todo,
-    //         completed: !todo.completed,
-    //       }
-    //     }
-    //   )
-    // )
-  }
-
-  //функция удалить todo
-  const removeTodo = (todoId) => {
-    //setTodos(todos.filter(todo => todo.id !== todoId))
-  }
+  const addTask = () => {
+    dispatch(addTodo({text}))
+    setText('');
+  };
 
   return (
     <div className="App">
         <InputField text={text} handleInput={setText} handleSubmit={addTask}/>
         <TodoList 
-          toggleTodoComplete={toggleTodoComplete}
-          removeTodo={removeTodo}
+          // toggleTodoComplete={toggleTodoComplete}
         />
     </div>
   );
